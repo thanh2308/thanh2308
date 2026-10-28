@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Danh mục')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Thêm / sửa danh mục</h1>
+<form th:action="@{/admin/categories/save}" th:object="${category}" method="post">
+<div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+<p th:each="err:${#fields.allErrors()}" th:text="${err}">
+</p>
+</div>
+<input type="hidden" th:field="*{id}">
+<label class="form-label" for="name">Tên</label>
+<input id="name" class="form-control" type="text" th:field="*{name}" >
+<div class="field-error" th:errors="*{name}">
+</div>
+<label class="form-label" for="description">Mô tả</label>
+<input id="description" class="form-control" type="text" th:field="*{description}" >
+<div class="field-error" th:errors="*{description}">
+</div>
+<button class="btn btn-primary mt-3">Lưu</button>
+<a class="btn btn-secondary mt-3 ms-2" th:href="@{/admin/categories}">Hủy</a>
+</form>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

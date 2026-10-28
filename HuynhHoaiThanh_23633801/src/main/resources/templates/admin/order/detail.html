@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Quản lý đơn')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<h1 th:text="|Đơn hàng #${order.id}|">
+</h1>
+<div class="card card-body mb-3">
+<p th:text="|Người nhận: ${order.customerName}|">
+</p>
+<p th:text="|Điện thoại: ${order.phone}|">
+</p>
+<p th:text="|Địa chỉ: ${order.address}|">
+</p>
+<p th:text="|Ghi chú: ${order.note ?: ''}|">
+</p>
+<p th:text="|Thanh toán: ${order.paymentMethod} — Trạng thái: ${order.status}|">
+</p>
+</div>
+<table class="table">
+<thead>
+<tr>
+<th>Sản phẩm</th>
+<th>Số lượng</th>
+<th>Đơn giá lúc mua</th>
+<th>Thành tiền</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="d:${order.details}">
+<td th:text="${d.product.name}">
+</td>
+<td th:text="${d.quantity}">
+</td>
+<td th:text="${d.unitPrice}">
+</td>
+<td th:text="${d.subtotal}">
+</td>
+</tr>
+</tbody>
+</table>
+<h3 th:text="|Tổng tiền: ${order.totalAmount} ₫|">
+</h3>
+<form th:action="@{/admin/orders/{id}/status(id=${order.id})}" method="post" class="d-flex gap-2">
+<select name="status" class="form-select w-auto">
+<option th:each="s:${statuses}" th:value="${s}" th:text="${s}" th:selected="${s == order.status}">
+</option>
+</select>
+<button class="btn btn-primary">Cập nhật trạng thái</button>
+</form>
+<p class="text-muted mt-2">Đơn đã hủy hoặc hoàn thành không đổi trạng thái. Hủy đơn sẽ hoàn tồn kho một lần.</p>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

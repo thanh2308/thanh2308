@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Lỗi hệ thống')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<h1>Không thể xử lý yêu cầu</h1>
+<p>Vui lòng thử lại hoặc kiểm tra cấu hình kết nối database.</p>
+<a th:href="@{/}">Về cửa hàng</a>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

@@ -1,0 +1,54 @@
+body {
+  background:#f5f7fb;
+  color:#24324a
+}
+main {
+  min-height:70vh
+}
+.card {
+  border:0;
+  box-shadow:0 3px 14px #13274712
+}
+.product-img {
+  height:180px;
+  object-fit:contain;
+  background:white
+}
+.thumb {
+  width:64px;
+  height:48px;
+  object-fit:contain
+}
+.card-title {
+  min-height:2.6em
+}
+.price {
+  color:#d70018;
+  font-weight:700
+}
+form .form-label {
+  margin-top:.65rem
+}
+.table {
+  background:white
+}
+.detail-img {
+  max-width:100%;
+  max-height:400px;
+  object-fit:contain
+}
+.field-error {
+  color:#b91c1c;
+  font-size:.875rem
+}
+a {
+  text-underline-offset:3px
+}
+.form-panel {
+  max-width:680px;
+  margin:auto;
+  background:white;
+  padding:1.5rem;
+  border-radius:12px
+}
+

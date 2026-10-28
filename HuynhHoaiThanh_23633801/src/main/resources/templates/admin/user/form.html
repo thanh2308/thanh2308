@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Thêm sửa tài khoản')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Thêm / sửa tài khoản</h1>
+<form th:action="@{/admin/users/save}" th:object="${userForm}" method="post">
+<div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+<p th:each="err:${#fields.allErrors()}" th:text="${err}">
+</p>
+</div>
+<input type="hidden" th:field="*{id}">
+<label class="form-label" for="username">Tên đăng nhập</label>
+<input id="username" class="form-control" type="text" th:field="*{username}" th:readonly="${userForm.id != null}">
+<div class="field-error" th:errors="*{username}">
+</div>
+<label class="form-label" for="password">Mật khẩu — để trống khi sửa nếu không đổi</label>
+<input id="password" class="form-control" type="password" th:field="*{password}" >
+<div class="field-error" th:errors="*{password}">
+</div>
+<label class="form-label" for="fullName">Họ tên</label>
+<input id="fullName" class="form-control" type="text" th:field="*{fullName}" >
+<div class="field-error" th:errors="*{fullName}">
+</div>
+<label class="form-label" for="email">Email</label>
+<input id="email" class="form-control" type="email" th:field="*{email}" >
+<div class="field-error" th:errors="*{email}">
+</div>
+<label class="form-label" for="phone">SĐT</label>
+<input id="phone" class="form-control" type="text" th:field="*{phone}" >
+<div class="field-error" th:errors="*{phone}">
+</div>
+<label class="form-label" for="address">Địa chỉ</label>
+<input id="address" class="form-control" type="text" th:field="*{address}" >
+<div class="field-error" th:errors="*{address}">
+</div>
+<label class="form-label">Vai trò</label>
+<select class="form-select" th:field="*{role}">
+<option th:each="r:${roles}" th:value="${r}" th:text="${r}">
+</option>
+</select>
+<label class="form-check mt-3">
+<input class="form-check-input" type="checkbox" th:field="*{enabled}">Đang hoạt động</label>
+<button class="btn btn-primary mt-3">Lưu tài khoản</button>
+</form>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Giỏ hàng')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<h1>Giỏ hàng</h1>
+<p class="alert alert-info" th:if="${cart.empty}">Giỏ hàng trống. <a th:href="@{/products}">Mua sắm ngay</a>
+</p>
+<div th:unless="${cart.empty}">
+<div class="table-responsive">
+<table class="table align-middle">
+<thead>
+<tr>
+<th>Sản phẩm</th>
+<th>Đơn giá</th>
+<th>Số lượng</th>
+<th>Thành tiền</th>
+<th>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="i:${cart.items}">
+<td>
+<img class="thumb" th:src="${i.imageUrl}" alt="">
+<span th:text="${i.name}">
+</span>
+</td>
+<td th:text="${i.price}">
+</td>
+<td>
+<form th:action="@{/cart/update}" method="post" class="d-flex gap-1">
+<input type="hidden" name="productId" th:value="${i.productId}">
+<input class="form-control" style="width:90px" type="number" min="0" name="quantity" th:value="${i.quantity}">
+<button class="btn btn-outline-primary btn-sm">Cập nhật</button>
+</form>
+</td>
+<td th:text="${i.subtotal}">
+</td>
+<td>
+<form th:action="@{/cart/remove/{id}(id=${i.productId})}" method="post">
+<button class="btn btn-outline-danger btn-sm">Xóa</button>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 th:text="|Tổng tiền: ${cart.totalAmount} ₫|">
+</h3>
+<div class="d-flex gap-3">
+<form th:action="@{/cart/clear}" method="post">
+<button class="btn btn-outline-danger">Xóa giỏ</button>
+</form>
+<a class="btn btn-success" th:href="@{/checkout}">Thanh toán</a>
+</div>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

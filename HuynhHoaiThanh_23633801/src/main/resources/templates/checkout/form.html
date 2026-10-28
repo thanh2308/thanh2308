@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Thanh toán')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Thông tin nhận hàng</h1>
+<p th:text="|Tạm tính: ${cart.totalAmount} ₫|">
+</p>
+<small>Giá và tồn kho được kiểm tra lại khi đặt hàng.</small>
+<form th:action="@{/checkout}" th:object="${checkoutForm}" method="post">
+<div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+<p th:each="err:${#fields.allErrors()}" th:text="${err}">
+</p>
+</div>
+<label class="form-label" for="customerName">Người nhận</label>
+<input id="customerName" class="form-control" type="text" th:field="*{customerName}" >
+<div class="field-error" th:errors="*{customerName}">
+</div>
+<label class="form-label" for="phone">Số điện thoại</label>
+<input id="phone" class="form-control" type="text" th:field="*{phone}" >
+<div class="field-error" th:errors="*{phone}">
+</div>
+<label class="form-label" for="address">Địa chỉ</label>
+<input id="address" class="form-control" type="text" th:field="*{address}" >
+<div class="field-error" th:errors="*{address}">
+</div>
+<label class="form-label" for="note">Ghi chú</label>
+<input id="note" class="form-control" type="text" th:field="*{note}" >
+<div class="field-error" th:errors="*{note}">
+</div>
+<label class="form-label">Phương thức thanh toán</label>
+<select class="form-select" th:field="*{paymentMethod}">
+<option value="COD">COD — trả khi nhận hàng</option>
+<option value="BANKING">Chuyển khoản giả lập</option>
+</select>
+<button class="btn btn-success mt-3">Xác nhận đặt hàng</button>
+</form>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

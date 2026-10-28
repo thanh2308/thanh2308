@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Thanh toán giả lập')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Chuyển khoản giả lập</h1>
+<p class="alert alert-warning">Chức năng minh họa theo bài học, không xử lý giao dịch ngân hàng thật.</p>
+<p th:text="|Nội dung: ESHOP-${order.id}|">
+</p>
+<h3 th:text="|Số tiền: ${order.totalAmount} ₫|">
+</h3>
+<form th:if="${order.paymentMethod.name() == 'BANKING' and order.status.name() == 'NEW'}" th:action="@{/orders/{id}/pay(id=${order.id})}" method="post">
+<button class="btn btn-success">Xác nhận thanh toán giả lập</button>
+</form>
+<a th:href="@{/orders/{id}(id=${order.id})}">Xem đơn hàng</a>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

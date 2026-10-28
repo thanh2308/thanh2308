@@ -1,0 +1,111 @@
+HuynhHoaiThanh_23633801/
+├── database/
+│   └── eShop.sql
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── example/
+│   │   │           └── eshop/
+│   │   │               ├── api/
+│   │   │               │   ├── ApiExceptionHandler.java
+│   │   │               │   ├── AuthApiController.java
+│   │   │               │   └── ProductApiController.java
+│   │   │               ├── cart/
+│   │   │               │   ├── Cart.java
+│   │   │               │   └── CartItem.java
+│   │   │               ├── controller/
+│   │   │               │   ├── admin/
+│   │   │               │   │   ├── AdminCategoryController.java
+│   │   │               │   │   ├── AdminOrderController.java
+│   │   │               │   │   ├── AdminProductController.java
+│   │   │               │   │   └── AdminUserController.java
+│   │   │               │   ├── AuthController.java
+│   │   │               │   ├── CartController.java
+│   │   │               │   ├── CheckoutController.java
+│   │   │               │   ├── ErrorPageController.java
+│   │   │               │   ├── GlobalModelAttributes.java
+│   │   │               │   ├── OrderController.java
+│   │   │               │   └── ShopController.java
+│   │   │               ├── dto/
+│   │   │               │   ├── CheckoutForm.java
+│   │   │               │   ├── RegisterForm.java
+│   │   │               │   └── UserForm.java
+│   │   │               ├── entity/
+│   │   │               │   ├── Category.java
+│   │   │               │   ├── Order.java
+│   │   │               │   ├── OrderDetail.java
+│   │   │               │   ├── OrderStatus.java
+│   │   │               │   ├── PaymentMethod.java
+│   │   │               │   ├── Product.java
+│   │   │               │   ├── Role.java
+│   │   │               │   └── User.java
+│   │   │               ├── exception/
+│   │   │               │   └── NotFoundException.java
+│   │   │               ├── repository/
+│   │   │               │   ├── CategoryRepository.java
+│   │   │               │   ├── OrderRepository.java
+│   │   │               │   ├── ProductRepository.java
+│   │   │               │   └── UserRepository.java
+│   │   │               ├── security/
+│   │   │               │   ├── CustomUserDetailsService.java
+│   │   │               │   ├── JwtAuthenticationFilter.java
+│   │   │               │   ├── JwtService.java
+│   │   │               │   └── SecurityConfig.java
+│   │   │               ├── service/
+│   │   │               │   ├── CategoryService.java
+│   │   │               │   ├── OrderService.java
+│   │   │               │   ├── ProductService.java
+│   │   │               │   └── UserService.java
+│   │   │               └── EshopApplication.java
+│   │   └── resources/
+│   │       ├── static/
+│   │       │   └── css/
+│   │       │       └── style.css
+│   │       ├── templates/
+│   │       │   ├── admin/
+│   │       │   │   ├── category/
+│   │       │   │   │   ├── form.html
+│   │       │   │   │   └── list.html
+│   │       │   │   ├── order/
+│   │       │   │   │   ├── detail.html
+│   │       │   │   │   └── list.html
+│   │       │   │   ├── product/
+│   │       │   │   │   ├── form.html
+│   │       │   │   │   └── list.html
+│   │       │   │   └── user/
+│   │       │   │       ├── form.html
+│   │       │   │       └── list.html
+│   │       │   ├── auth/
+│   │       │   │   ├── login.html
+│   │       │   │   └── register.html
+│   │       │   ├── cart/
+│   │       │   │   └── view.html
+│   │       │   ├── checkout/
+│   │       │   │   └── form.html
+│   │       │   ├── error/
+│   │       │   │   ├── 403.html
+│   │       │   │   ├── 404.html
+│   │       │   │   └── 500.html
+│   │       │   ├── fragments/
+│   │       │   │   └── layout.html
+│   │       │   ├── order/
+│   │       │   │   ├── detail.html
+│   │       │   │   ├── my-orders.html
+│   │       │   │   └── payment.html
+│   │       │   └── shop/
+│   │       │       ├── detail.html
+│   │       │       └── index.html
+│   │       └── application.properties
+│   └── test/
+│       ├── java/
+│       │   └── com/
+│       │       └── example/
+│       │           └── eshop/
+│       │               └── EshopIntegrationTest.java
+│       └── resources/
+│           └── application.properties
+├── .gitignore
+├── KIEM_THU.md
+├── README.md
+└── pom.xml

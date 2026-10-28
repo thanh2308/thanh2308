@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Đăng nhập')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Đăng nhập</h1>
+<p th:if="${param.error}" class="alert alert-danger">Sai tài khoản, mật khẩu hoặc tài khoản bị khóa.</p>
+<p th:if="${param.registered}" class="alert alert-success">Đăng ký thành công, hãy đăng nhập.</p>
+<form th:action="@{/login}" method="post">
+<label class="form-label" for="username">Tên đăng nhập</label>
+<input class="form-control" id="username" name="username" required autocomplete="username">
+<label class="form-label" for="password">Mật khẩu</label>
+<input class="form-control" id="password" type="password" name="password" required autocomplete="current-password">
+<button class="btn btn-primary mt-3">Đăng nhập</button>
+</form>
+<a th:href="@{/register}">Tạo tài khoản mới</a>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

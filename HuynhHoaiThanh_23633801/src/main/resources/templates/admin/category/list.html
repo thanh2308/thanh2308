@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Danh mục')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="d-flex justify-content-between mb-3">
+<h1>Danh mục</h1>
+<a class="btn btn-success align-self-center" th:href="@{/admin/categories/new}">+ Thêm mới</a>
+</div>
+<div class="table-responsive">
+<table class="table align-middle">
+<thead>
+<tr>
+<th>ID</th>
+<th>Tên</th>
+<th>Mô tả</th>
+<th>Thao tác</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="x:${categories}">
+<td th:text="${x.id}">
+</td>
+<td th:text="${x.name}">
+</td>
+<td th:text="${x.description}">
+</td>
+<td>
+<a class="btn btn-sm btn-outline-primary" th:href="@{/admin/categories/{id}/edit(id=${x.id})}">Sửa</a>
+<form class="d-inline" th:action="@{/admin/categories/{id}/delete(id=${x.id})}" method="post" onsubmit="return confirm('Xóa dữ liệu này?')">
+<button class="btn btn-sm btn-outline-danger">Xóa</button>
+</form>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

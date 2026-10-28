@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Sản phẩm')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Thêm / sửa sản phẩm</h1>
+<form th:action="@{/admin/products/save}" th:object="${product}" method="post">
+<div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+<p th:each="err:${#fields.allErrors()}" th:text="${err}">
+</p>
+</div>
+<input type="hidden" th:field="*{id}">
+<label class="form-label" for="name">Tên</label>
+<input id="name" class="form-control" type="text" th:field="*{name}" >
+<div class="field-error" th:errors="*{name}">
+</div>
+<label class="form-label" for="description">Mô tả</label>
+<input id="description" class="form-control" type="text" th:field="*{description}" >
+<div class="field-error" th:errors="*{description}">
+</div>
+<label class="form-label" for="price">Giá</label>
+<input id="price" class="form-control" type="number" th:field="*{price}" min="0" step="0.01">
+<div class="field-error" th:errors="*{price}">
+</div>
+<label class="form-label" for="quantity">Số lượng</label>
+<input id="quantity" class="form-control" type="number" th:field="*{quantity}" min="0">
+<div class="field-error" th:errors="*{quantity}">
+</div>
+<label class="form-label" for="imageUrl">URL ảnh</label>
+<input id="imageUrl" class="form-control" type="text" th:field="*{imageUrl}" >
+<div class="field-error" th:errors="*{imageUrl}">
+</div>
+<label class="form-label">Danh mục</label>
+<select class="form-select" name="categoryId" required>
+<option value="">Chọn danh mục</option>
+<option th:each="c:${categories}" th:value="${c.id}" th:text="${c.name}" th:selected="${product.category != null and product.category.id == c.id}">
+</option>
+</select>
+<button class="btn btn-primary mt-3">Lưu</button>
+<a class="btn btn-secondary mt-3 ms-2" th:href="@{/admin/products}">Hủy</a>
+</form>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

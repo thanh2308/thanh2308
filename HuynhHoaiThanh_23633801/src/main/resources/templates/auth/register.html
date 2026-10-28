@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Đăng ký')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="form-panel">
+<h1 class="h3">Đăng ký khách hàng</h1>
+<form th:action="@{/register}" th:object="${registerForm}" method="post">
+<div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+<p th:each="err:${#fields.allErrors()}" th:text="${err}">
+</p>
+</div>
+<label class="form-label" for="username">Tên đăng nhập</label>
+<input id="username" class="form-control" type="text" th:field="*{username}" >
+<div class="field-error" th:errors="*{username}">
+</div>
+<label class="form-label" for="password">Mật khẩu</label>
+<input id="password" class="form-control" type="password" th:field="*{password}" >
+<div class="field-error" th:errors="*{password}">
+</div>
+<label class="form-label" for="confirmPassword">Nhập lại mật khẩu</label>
+<input id="confirmPassword" class="form-control" type="password" th:field="*{confirmPassword}" >
+<div class="field-error" th:errors="*{confirmPassword}">
+</div>
+<label class="form-label" for="fullName">Họ tên</label>
+<input id="fullName" class="form-control" type="text" th:field="*{fullName}" >
+<div class="field-error" th:errors="*{fullName}">
+</div>
+<label class="form-label" for="email">Email</label>
+<input id="email" class="form-control" type="email" th:field="*{email}" >
+<div class="field-error" th:errors="*{email}">
+</div>
+<label class="form-label" for="phone">Số điện thoại</label>
+<input id="phone" class="form-control" type="text" th:field="*{phone}" >
+<div class="field-error" th:errors="*{phone}">
+</div>
+<label class="form-label" for="address">Địa chỉ</label>
+<input id="address" class="form-control" type="text" th:field="*{address}" >
+<div class="field-error" th:errors="*{address}">
+</div>
+<button class="btn btn-primary mt-3">Đăng ký</button>
+</form>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

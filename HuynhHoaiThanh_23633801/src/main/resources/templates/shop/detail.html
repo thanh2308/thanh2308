@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Chi tiết sản phẩm')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<div class="row g-4">
+<div class="col-md-5">
+<img class="detail-img" th:src="${product.imageUrl}" th:alt="${product.name}">
+</div>
+<div class="col-md-7">
+<p th:text="${product.category.name}">
+</p>
+<h1 th:text="${product.name}">
+</h1>
+<p th:text="${product.description}">
+</p>
+<h3 class="price" th:text="${#numbers.formatDecimal(product.price,0,'POINT',0,'COMMA')}+' ₫'">
+</h3>
+<p th:text="|Tồn kho: ${product.quantity}|">
+</p>
+<form sec:authorize="!hasRole('SELLER')" th:action="@{/cart/add}" method="post" class="d-flex gap-2">
+<input type="hidden" name="productId" th:value="${product.id}">
+<input class="form-control w-25" type="number" name="quantity" value="1" min="1" th:max="${product.quantity}">
+<button class="btn btn-primary" th:disabled="${product.quantity == 0}">Thêm vào giỏ</button>
+</form>
+</div>
+</div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>

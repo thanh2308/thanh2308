@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/layout :: head('Đơn hàng của tôi')}">
+</head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}">
+</nav>
+<main class="container">
+<div th:replace="~{fragments/layout :: alerts}">
+</div>
+<h1>Đơn hàng của tôi</h1>
+<div class="table-responsive">
+<table class="table">
+<thead>
+<tr>
+<th>Mã đơn</th>
+<th>Ngày đặt</th>
+<th>Người nhận</th>
+<th>Trạng thái</th>
+<th>Tổng tiền</th>
+<th>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="o:${orders}">
+<td th:text="${o.id}">
+</td>
+<td th:text="${o.orderDate}">
+</td>
+<td th:text="${o.customerName}">
+</td>
+<td th:text="${o.status}">
+</td>
+<td th:text="${o.totalAmount}">
+</td>
+<td>
+<a th:href="@{/orders/{id}(id=${o.id})}">Chi tiết</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p th:if="${#lists.isEmpty(orders)}">Chưa có đơn hàng.</p>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">
+</footer>
+</body>
+</html>
